@@ -24,7 +24,12 @@ The CovidTracker package is designed for the easy retrieval and analysis of data
     Function for plotting chloropleth maps with Covid data 
 
 ## Similar Packages   
-TODO
+There are several R packges which have some overlapping functionality as our package, but none which perform all the data acquisition, analysis and graphing tasks which CovidTracker encompasses. The packages designed for covid data retrieval also do not use the same data source as CovidTracker and do not provide the same level of granularity. Some examples of related R packages useful for Covid data retrieval and data visualizations include:
+
+[COVID19](https://cran.r-project.org/web/packages/COVID19/index.html) - For Covid data retrieval
+[covdata](https://github.com/kjhealy/covdata/) - For Covid data retrieval
+[ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) - For data visualizations
+[tmap](https://cran.r-project.org/web/packages/tmap/index.html) - For chloropleth data visualizations
 
 
 ## Installation
