@@ -6,7 +6,26 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CovidTrackerR is to …
+CovidTrackerR provides basic data cleaning, wrangling and plotting of Covid tracking data in Canada.
+
+## Functions
+The CovidTracker package is designed for the easy retrieval and analysis of data pertaining to Covid trends in Canada, including information about cases, vaccinations and testing. The package serves as a wrapper for the opencovid.ca [API](Ihttps://opencovid.ca/api/), and provides additional helper functions for visualising the data, either as a time series or in the form of a map. 
+
+* #### `get_covid_data()`
+    Retrieve cleaned and formatted data of specified type and within (optionally) provided time ranges and locations
+
+* #### `plot_time_series()`
+    Function for plotting time series trends in Covid data, including options for trendlines and smoothing
+
+* #### `calculate_stat_summary()`
+    Function for returning key statistical information about Covid data, such as long run trends and comparisons between provinces<br>
+
+* #### `plot_geographical()`
+    Function for plotting chloropleth maps with Covid data 
+
+## Similar Packages   
+TODO
+
 
 ## Installation
 
