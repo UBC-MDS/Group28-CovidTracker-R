@@ -1,4 +1,4 @@
-library(tidyverse)
+library(stringr)
 library(httr)
 library(jsonlite)
 
@@ -38,11 +38,5 @@ get_covid_data <- function(data_type="cases", loc="", date="") {
   res = GET(endpoint, query = params)
   return(data.frame(fromJSON(rawToChar(res$content))[[data_type]]))
 }
-
-df <- get_covid_data("cases", "", "25-08-2020")
-
-nrow(df)
-ncol(df)
-
 
 
