@@ -1,47 +1,12 @@
 #' Plot Cloropleth Map of Covid Data
 #'
-<<<<<<< Updated upstream
 #' @param covid_df dataframe containing covid data to plot
 #' @param metric unquoted column name of a quantitative variable to plot
-=======
-#' @param covid_dfa dataframe containing covid data to plot
-#' @param metric an unquoted column name of a quantitative variable to plot
-#' in the chloropleth map
->>>>>>> Stashed changes
 #'
 #' @return plot object of cloropleth map
 #' @export
 #'
 #' @examples
-<<<<<<< Updated upstream
-#' plot_geographical(covid_df,cases)
-#'
-library(geojsonio)
-plot_geographical <- function(covid_df, metric) {
-
-  if (!is.data.frame(covid_df)) {
-    stop("The argument 'covid_df' should be a dataframe.")
-  }
-  else if (!is.numeric(covid_df |> pull({{ metric }}))) {
-    stop("Metric to plot must be numeric")
-  }
-
-
-
-
-  if str_detect(metric,"^cumulative"):
-    break
-
-
-  else:
-      break
-
-
-
-
-
-
-=======
 #' plot_geographical(covid_df, cases)
 plot_geographical <- function(covid_df, metric) {
 
@@ -59,8 +24,8 @@ plot_geographical <- function(covid_df, metric) {
   }
 
   #Read in and tidy geodataframe containing Canada geography data
-  spdf <- geojson_read("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/canada.geojson",  what = "sp")|>
-    tidy(region = "name")
+  spdf <- geojsonio::geojson_read("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/canada.geojson",  what = "sp")|>
+    broom::tidy(region = "name")
   spdf <- spdf|>
     rename(province = id)|>
     mutate(province=str_replace_all(province,c('Newfoundland and Labrador' = 'NL',
@@ -104,5 +69,5 @@ plot_geographical <- function(covid_df, metric) {
     coord_map()
 
   return (plot)
->>>>>>> Stashed changes
+
 }
