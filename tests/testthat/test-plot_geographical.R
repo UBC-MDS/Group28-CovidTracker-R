@@ -1,4 +1,4 @@
-covid_df <- read_csv("../../R/covid_df.csv")
+covid_df <- get_covid_data()
 plot <- plot_geographical(covid_df,cases)
 
 test_that("Incorrect input types should throw an error", {
