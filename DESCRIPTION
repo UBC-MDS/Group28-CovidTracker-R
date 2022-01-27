@@ -23,3 +23,6 @@ Imports:
     broom
 Depends: 
     tidyverse
+    jsonlite,
+    httr,
+    stringr
