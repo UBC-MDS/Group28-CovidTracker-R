@@ -34,15 +34,8 @@ There are several R packges which have some overlapping functionality as our pac
 
 ## Installation
 
-You can install the released version of CovidTrackerR from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("CovidTrackerR")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
+You can install the development version of CovidTrackerR from [GitHub](https://github.com/) with:
+ 
 ``` r
 # install.packages("devtools")
 devtools::install_github("UBC-MDS/Group28-CovidTracker-R")
