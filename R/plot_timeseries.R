@@ -53,9 +53,9 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
     pattern <- "^\\d{4}-\\d{2}-\\d{2}$"
 
     if((start != "") & (end != "")){
-        if(!str_detect(start, pattern)) {
+        if(!stringr::str_detect(start, pattern)) {
             stop("Input start date should be in pattern YYYY-MM-DD")
-        } else if(!str_detect(end, pattern)) {
+        } else if(!stringr::str_detect(end, pattern)) {
             stop("Input end date should be in pattern YYYY-MM-DD")
         } else {
             start <- lubridate::ymd(start)

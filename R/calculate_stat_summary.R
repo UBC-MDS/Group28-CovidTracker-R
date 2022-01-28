@@ -40,7 +40,7 @@ calculate_stat_summary <- function(df, column) {
     # find the date column in the input data.frame, and rename it to 'date'
     columns = colnames(df)
     for (i in seq_along(columns)) {
-       if (str_detect(columns[i], "date")) {
+       if (stringr::str_detect(columns[i], "date")) {
            columns[i] <- "date"
        }
     }
