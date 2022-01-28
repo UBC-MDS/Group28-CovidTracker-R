@@ -82,8 +82,8 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
     data <- select(covid_df, !!metric, new_date) |> filter(new_date <= end, new_date >= start)
 
-    plot <- ggplot(data, aes_string('new_date', metric)) +
-        geom_line() +
+    plot <- ggplot() +
+        geom_line(data, mapping = aes_string('new_date', metric)) +
         xlab("Date") +
         ylab(sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))) +
         ggtitle(paste('Time series plot of', sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))))
