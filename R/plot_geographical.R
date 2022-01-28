@@ -7,6 +7,7 @@
 #' @export
 #'
 #' @examples
+#' covid_df <- get_covid_data()
 #' plot_geographical(covid_df, cases)
 plot_geographical <- function(covid_df, metric) {
 
