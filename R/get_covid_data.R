@@ -27,7 +27,7 @@ get_covid_data <- function(data_type="cases", loc="", date="") {
   if (! loc %in% provinces){
     stop("Provinces must be within pre-defined options or left empty.")
   }
-  if (is.na(str_extract(date, regex("(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}|$^")))){
+  if (is.na(stringr::str_extract(date, regex("(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}|$^")))){
     stop("Input date must be string following the DD-MM-YYYY format")
   }
 
