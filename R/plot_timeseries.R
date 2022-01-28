@@ -17,6 +17,8 @@ library(plotly)
 
 plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
+    metric <- enquo(metric)
+
     # Test input values
     if(!is.data.frame(covid_df)) {
         stop("The datatype of covid_df must be data frame.")
@@ -42,7 +44,9 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
     #     stop("This column is not available for plotting, please choose another column.")
     # }
 
-    metric <- enquo(metric)
+    if (!is.numeric(covid_df |> pull( !!metric ))) {
+        stop("Metric column to plot must be numeric")
+    }
 
     # Find and convert the date column
     for (i in colnames(covid_df)) {
@@ -84,7 +88,7 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
         ylab(sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))) +
         ggtitle(paste('Time series plot of', sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))))
 
-    plot <- ggplotly(plot)
+    #plot <- ggplotly(plot)
 
     return (plot)
 }
