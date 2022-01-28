@@ -10,11 +10,6 @@
 #'
 #' @examples
 #' plot_timeseries(df,cases)
-
-library(tidyverse)
-library(lubridate)
-library(plotly)
-
 plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
     metric <- enquo(metric)
