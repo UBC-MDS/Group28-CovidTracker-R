@@ -18,7 +18,7 @@ test_that("Incorrect input types should throw an error", {
 })
 
 # Test output attributes
-test_that('The plot should be a line plot with converted date column as x axie', {
+test_that('The plot should be a line plot with converted date column as x axis', {
     expect_true("GeomLine" %in% c(class(plot2$layers[[1]]$geom)))
     expect_true("new_date" == rlang::get_expr(plot2$layers[[1]]$mapping$x))
 })
