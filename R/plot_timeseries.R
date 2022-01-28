@@ -15,7 +15,7 @@ library(tidyverse)
 library(lubridate)
 library(plotly)
 
-plot_timeseries <- function(covid_df, metric, start = '', end = '') {
+plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
     # Test input values
     if(!is.data.frame(covid_df)) {
@@ -68,11 +68,11 @@ plot_timeseries <- function(covid_df, metric, start = '', end = '') {
         }
     }
 
-    if(start == "") {
+    if(isTRUE(start == "")) {
         start <- min(covid_df$new_date)
     }
 
-    if(end == "") {
+    if(isTRUE(end == "")) {
         end <- max(covid_df$new_date)
     }
 
