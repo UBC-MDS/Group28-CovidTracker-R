@@ -84,7 +84,7 @@ plot_timeseries <- function(covid_df, metric, start = '', end = '') {
         ylab(sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))) +
         ggtitle(paste('Time series plot of', sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," ")))))
 
-    #plot <- ggplotly(plot)
+    plot <- ggplotly(plot)
 
     return (plot)
 }
