@@ -1,5 +1,3 @@
-library(stringr)
-library(dplyr)
 #' Create summary information about the covid in each province of Canada
 #'
 #' @param df: data.frame containing covid data to summarize
@@ -9,7 +7,8 @@ library(dplyr)
 #' @export
 #'
 #' @examples
-#' calculate_stat_summary(covid_df, 'cases')
+#' covid_df <- get_covid_data()
+#' calculate_stat_summary(covid_df,'cases')
 calculate_stat_summary <- function(df, column) {
 
     if (! is.data.frame(df)) {

@@ -15,12 +15,12 @@ library(jsonlite)
 #' @examples
 #' get_covid_data('cases', 'BC', '13-01-2021')
 get_covid_data <- function(data_type="cases", loc="", date="") {
-  
- 
+
+
   stat_types <- c('cases', 'mortality', 'recovered', 'testing', 'active',
                 'dvaccine', 'avaccine', 'cvaccine')
   provinces <- c('AB', 'BC', 'MB', 'NB', 'NL', 'NT', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT', 'RP', '')
-  
+
   if (! data_type %in% stat_types){
     stop("Stat type must be within the pre-defined options")
   }
@@ -34,9 +34,9 @@ get_covid_data <- function(data_type="cases", loc="", date="") {
 
   endpoint <- "https://api.opencovid.ca/timeseries"
   params <- list(stat = data_type, loc = loc, date = date)
-  
-  res = GET(endpoint, query = params)
-  return(data.frame(fromJSON(rawToChar(res$content))[[data_type]]))
+
+  res = httr::GET(endpoint, query = params)
+  return(data.frame(jsonlite::fromJSON(rawToChar(res$content))[[data_type]]))
 }
 
 

@@ -20,7 +20,9 @@ Imports:
     geojsonio,
     stringr,
     dplyr,
-    broom
+    broom,
+    plotly,
+    httr,
+    mapproj
 Depends: 
     tidyverse
-

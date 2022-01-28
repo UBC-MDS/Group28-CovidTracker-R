@@ -51,7 +51,7 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
     # Find and convert the date column
     for (i in colnames(covid_df)) {
         if(str_detect(i, "date")) {
-            covid_df$new_date <- dmy(covid_df[,i])
+            covid_df$new_date <- lubridate::dmy(covid_df[,i])
         }
     }
 
@@ -63,8 +63,8 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
         } else if(!str_detect(end, pattern)) {
             stop("Input end date should be in pattern YYYY-MM-DD")
         } else {
-            start <- ymd(start)
-            end <- ymd(end)
+            start <- lubridate::ymd(start)
+            end <- lubridate::ymd(end)
         }
 
         if(end <= start) {

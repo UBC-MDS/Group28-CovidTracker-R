@@ -7,10 +7,12 @@
 #' @export
 #'
 #' @examples
+#' covid_df <- get_covid_data()
 #' plot_geographical(covid_df, cases)
 plot_geographical <- function(covid_df, metric) {
 
   metric <- enquo(metric)
+
 
   # Check input parameters are correct type
   if (!is.data.frame(covid_df)) {
@@ -34,7 +36,7 @@ plot_geographical <- function(covid_df, metric) {
                                                'Northwest Territories' ='NWT')))
 
   #Data wrangling if cumulative metric is chosen
-  if (str_detect(metric, "^cumulative")){
+  if (str_detect(metric, "^cumulative")[1]){
     for (met in colnames(covid_df)){
       if (str_detect(metric, "^date")){
         date_metric = met
@@ -44,6 +46,21 @@ plot_geographical <- function(covid_df, metric) {
     covid_df[[date_metric]] <- dmy(covid_df[[date_metric]] )# convert date column to datetime
     covid_df <- covid_df|>
       filter(covid_df[[date_metric]] == max(covid_df[[date_metric]]))# filter for most recent date
+
+    #Plot Chloropleth Map
+    plot <- ggplot() +
+      geom_polygon(data = merged, aes(fill=!!metric, x = long, y = lat, group = group),color="grey") +
+      theme_void() +
+      scale_fill_continuous(
+        low = "ivory",high = "red4",
+        guide=guide_colorbar(barwidth = 1,barheight = 14,title.position = "left"))+
+      labs(fill = sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," "))),
+           title = sprintf("Covid Numbers Across Canada: %s",str_to_title(str_replace(as_label(metric),"_"," "))))+
+      theme(legend.title = element_text(angle = 270,face = 'bold'),
+            plot.title = element_text(size = 18, face = "bold"))+
+      coord_map()
+
+    return (plot)
   }
 
   #Data wrangling if non cumulative metric is chosen
@@ -53,21 +70,23 @@ plot_geographical <- function(covid_df, metric) {
       select_if( is.numeric) |>
       summarise(across(everything(), sum))
     merged<-left_join(spdf,covid_df,by="province")
+
+    #Plot Chloropleth Map
+    plot <- ggplot() +
+      geom_polygon(data = merged, aes(fill=!!metric, x = long, y = lat, group = group),color="grey") +
+      theme_void() +
+      scale_fill_continuous(
+        low = "ivory",high = "red4",
+        guide=guide_colorbar(barwidth = 1,barheight = 14,title.position = "left"))+
+      labs(fill = sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," "))),
+           title = sprintf("Covid Numbers Across Canada: %s",str_to_title(str_replace(as_label(metric),"_"," "))))+
+      theme(legend.title = element_text(angle = 270,face = 'bold'),
+            plot.title = element_text(size = 18, face = "bold"))+
+      coord_map()
+
+    return (plot)
   }
 
-  #Plot Chloropleth Map
-  plot <- ggplot() +
-    geom_polygon(data = merged, aes(fill=!!metric, x = long, y = lat, group = group),color="grey") +
-    theme_void() +
-    scale_fill_continuous(
-      low = "ivory",high = "red4",
-      guide=guide_colorbar(barwidth = 1,barheight = 14,title.position = "left"))+
-    labs(fill = sprintf("%s",str_to_title(str_replace(as_label(metric),"_"," "))),
-         title = sprintf("Covid Numbers Across Canada: %s",str_to_title(str_replace(as_label(metric),"_"," "))))+
-    theme(legend.title = element_text(angle = 270,face = 'bold'),
-          plot.title = element_text(size = 18, face = "bold"))+
-    coord_map()
 
-  return (plot)
 
 }
