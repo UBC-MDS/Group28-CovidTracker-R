@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#' df <- get_covid_data()
 #' plot_timeseries(df,cases)
 plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
