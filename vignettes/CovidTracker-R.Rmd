@@ -1,0 +1,85 @@
+---
+title: "CovidTracker-R Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CovidTracker-R Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=6, fig.height=4
+)
+```
+
+
+## Introduction to CovidTrackerR
+
+`CovidTrackerR` is a R package for basic data cleaning, wrangling and plotting 
+of Covid tracking data in Canada. The package will allow you to pull data from 
+the opencovid.ca API, visualize Covid related trends as a timeseries or a map, 
+and calculate summary statistics of the Covid data.
+
+## Installation
+To use this package, follow the installation guide on README and 
+install this package.  Then, import the package.
+
+```{r setup}
+library(CovidTrackerR)
+```
+
+
+## Functions
+
+### Retrieve data using  `get_covid_data`:  
+  -   This function acquires Canada Covid data of a specified type
+      and for an optionally provided date and province
+  -   If no arguments are given, the default is that the function
+      will return cases data for all provinces and all dates.
+  -   An example of when provinces and dates are provided and omitted are 
+      shown below.
+        
+```{r 1.1.1,}
+covid_data_spec <- get_covid_data('active', 'BC', '13-01-2021')
+covid_data_spec
+```
+
+
+```{r 1.1.2}
+covid_data <- get_covid_data()
+head(covid_data)
+```
+    
+### Geographical visualization with `plot_geographical`:
+  -   This function creates and plots a cloropleth map of the specified 
+      Covid tracking metric per province
+        
+```{r 1.2}
+covid_df <- CovidTrackerR::get_covid_data()
+plot_geographical(covid_df, cases)
+```
+
+        
+### Time series visualization with `plot_timeseries`:
+  -   This function creates a plot of a specified covid metric over time.
+  -   Start and end dates can be optionally specified by user, if dates are
+      not provided, function will create a plot over all dates in dataframe.
+        
+```{r 1.3}
+df <- get_covid_data()
+plot_timeseries(df,cases)
+```
+
+### Calculate statistical summaries with `calculate_stat_summary`:
+  -   This function provides summary information about a specified 
+      Covid metric in each province of Canada. It returns a dataframe
+      containing statistical summaries such as the min, max, mean,
+      and quartiles.
+        
+```{r 1.4}
+covid_df <- get_covid_data()
+calculate_stat_summary(covid_df,'cases')
+```
