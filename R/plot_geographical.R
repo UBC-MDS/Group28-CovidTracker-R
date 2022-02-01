@@ -11,7 +11,7 @@
 #' plot_geographical(covid_df, cases)
 plot_geographical <- function(covid_df, metric) {
 
-  metric <- enquo(metric)
+  metric <- rlang::enquo(metric)
 
 
   # Check input parameters are correct type
