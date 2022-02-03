@@ -21,15 +21,15 @@ plot_geographical <- function(covid_df, metric) {
   # else if (as_label(metric) %in% colnames(covid_df)) {
   #   stop("Chosen metric must be a column in the dataframe")
   # }
-  else if (!is.numeric(covid_df |> pull( !!metric ))) {
+  else if (!is.numeric(covid_df %>% pull( !!metric ))) {
     stop("Metric column to plot must be numeric")
   }
 
   #Read in and tidy geodataframe containing Canada geography data
-  spdf <- geojsonio::geojson_read("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/canada.geojson",  what = "sp")|>
+  spdf <- geojsonio::geojson_read("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/canada.geojson",  what = "sp")%>%
     broom::tidy(region = "name")
-  spdf <- spdf|>
-    rename(province = id)|>
+  spdf <- spdf%>%
+    rename(province = id)%>%
     mutate(province=str_replace_all(province,c('Newfoundland and Labrador' = 'NL',
                                                'Prince Edward Island' = 'PEI',
                                                'British Columbia' = 'BC',
@@ -44,14 +44,14 @@ plot_geographical <- function(covid_df, metric) {
       }
     }
     covid_df[[date_metric]] <- lubridate::dmy(covid_df[[date_metric]] )# convert date column to datetime
-    covid_df <- covid_df|>
+    covid_df <- covid_df%>%
       filter(covid_df[[date_metric]] == max(covid_df[[date_metric]]))# filter for most recent date
 }
   #Data wrangling if non cumulative metric is chosen
   else {
-    covid_df <- covid_df|>
-      group_by(province)|>
-      select_if( is.numeric) |>
+    covid_df <- covid_df%>%
+      group_by(province)%>%
+      select_if( is.numeric) %>%
       summarise(across(everything(), sum))
     merged<-left_join(spdf,covid_df,by="province")
 

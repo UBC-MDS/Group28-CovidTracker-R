@@ -40,7 +40,7 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
     #     stop("This column is not available for plotting, please choose another column.")
     # }
 
-    if (!is.numeric(covid_df |> pull( !!metric ))) {
+    if (!is.numeric(covid_df %>% pull( !!metric ))) {
         stop("Metric column to plot must be numeric")
     }
 
@@ -76,7 +76,7 @@ plot_timeseries <- function(covid_df, metric, start = "", end = "") {
         end <- max(covid_df$new_date)
     }
 
-    data <- select(covid_df, !!metric, new_date) |> filter(new_date <= end, new_date >= start)
+    data <- select(covid_df, !!metric, new_date) %>% filter(new_date <= end, new_date >= start)
 
     plot <- ggplot() +
         geom_line(data, mapping = aes_string('new_date', metric)) +
