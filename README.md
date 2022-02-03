@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/UBC-MDS/Group28-CovidTracker-R/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/Group28-CovidTracker-R/actions)
-[![codecov](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R/branch/master/graph/badge.svg?token=dGXh2N04A5)](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R)
+[![codecov](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R/branch/main/graph/badge.svg?token=dGXh2N04A5)](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R)
 <!-- badges: end -->
 
 CovidTrackerR provides basic data cleaning, wrangling and plotting of Covid tracking data in Canada.
