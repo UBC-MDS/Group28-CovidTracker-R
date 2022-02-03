@@ -47,25 +47,25 @@ calculate_stat_summary <- function(df, column) {
     colnames(df) <- columns
 
     # transform the date column from string to date
-    df <- df |>
+    df <- df %>%
       mutate(date = as.Date(date, format='%d-%m-%Y'))
 
     # generate summary information
-    summary <- df |>
-        group_by(province) |>
+    summary <- df %>%
+        group_by(province) %>%
         summarize(start_date = min(date), end_date = max(date), count = n(), sd = round(sd(!!column), 2),
                   min = min(!!column), max = max(!!column), mean = as.integer(mean(!!column)),
                   quantile_25 = quantile(!!column,0.25 ),
                   quantile_50 = quantile(!!column, 0.5),
-                  quantile_75 = quantile(!!column, 0.75)) |>
+                  quantile_75 = quantile(!!column, 0.75)) %>%
         arrange(province)
 
     # get the current value of the column to summarize
     date_max <- max(df$date)
-    current <- df |>
-        filter(date == date_max) |>
-        arrange(province) |>
-        select(!!column) |>
+    current <- df %>%
+        filter(date == date_max) %>%
+        arrange(province) %>%
+        select(!!column) %>%
         rename(current_value := !!column)
 
     return(cbind(summary, current))
