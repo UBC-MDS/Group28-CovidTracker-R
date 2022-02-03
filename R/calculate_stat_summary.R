@@ -48,7 +48,7 @@ calculate_stat_summary <- function(df, column) {
 
     # transform the date column from string to date
     df <- df |>
-        mutate(date = as.Date(date, format='%d-%m-%Y'))
+      mutate(date = as.Date(date, format='%d-%m-%Y'))
 
     # generate summary information
     summary <- df |>
