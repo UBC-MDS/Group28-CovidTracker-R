@@ -40,6 +40,21 @@ a time series or in the form of a map.
 
     Function for plotting choropleth maps with Covid data
 
+## Installation
+
+You can install the development version of CovidTrackerR from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("UBC-MDS/Group28-CovidTracker-R")
+```
+
+## Documentation
+
+A vignette with full usage demonstration and function documentation can
+be found here <https://ubc-mds.github.io/Group28-CovidTracker-R/>
+
 ## Usage and Examples
 
 `CovidTrackerR` can be used to acquire covid data, generate choropleth
@@ -142,13 +157,3 @@ visualizations include:
     For data visualizations
 -   [tmap](https://cran.r-project.org/web/packages/tmap/index.html) -
     For choropleth data visualizations
-
-## Installation
-
-You can install the development version of CovidTrackerR from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("UBC-MDS/Group28-CovidTracker-R")
-```
