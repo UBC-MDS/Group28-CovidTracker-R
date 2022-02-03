@@ -26,7 +26,10 @@ Imports:
     broom,
     plotly,
     httr,
-    mapproj
+    mapproj,
+    jsonlite,
+    rlang,
+    ggplot2
 Depends: 
     tidyverse
 VignetteBuilder: knitr

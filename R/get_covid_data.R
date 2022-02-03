@@ -1,7 +1,3 @@
-library(stringr)
-library(httr)
-library(jsonlite)
-
 #' Acquires Canada Covid data of specified type
 #' and for an optionally provided date and province
 #'

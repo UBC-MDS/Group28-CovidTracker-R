@@ -1,14 +1,14 @@
 #' Create summary information about the covid in each province of Canada
 #'
-#' @param df: data.frame containing covid data to summarize
-#' @param column: the column name to summarize
+#' @param df data.frame containing covid data to summarize
+#' @param column the column name to summarize
 #'
 #' @return data.frame containing summary information.
 #' @export
 #'
 #' @examples
-#' covid_df <- get_covid_data()
-#' calculate_stat_summary(covid_df,'cases')
+#' df <- get_covid_data()
+#' calculate_stat_summary(df,'cases')
 calculate_stat_summary <- function(df, column) {
 
     if (! is.data.frame(df)) {

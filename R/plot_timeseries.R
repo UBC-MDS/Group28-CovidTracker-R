@@ -11,7 +11,7 @@
 #' @examples
 #' df <- get_covid_data()
 #' plot_timeseries(df,cases)
-plot_time_series <- function(covid_df, metric, start = "", end = "") { 
+plot_timeseries <- function(covid_df, metric, start = "", end = "") {
 
     metric <- enquo(metric)
 
