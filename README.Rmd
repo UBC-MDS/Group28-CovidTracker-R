@@ -13,49 +13,67 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # CovidTrackerR
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/UBC-MDS/Group28-CovidTracker-R/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/Group28-CovidTracker-R/actions)
+[![codecov](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R/branch/main/graph/badge.svg?token=dGXh2N04A5)](https://codecov.io/gh/UBC-MDS/Group28-CovidTracker-R)
 <!-- badges: end -->
 
-The goal of CovidTrackerR is to ...
+CovidTrackerR provides basic data cleaning, wrangling and plotting of Covid tracking data in Canada.
+
+## Functions
+The CovidTrackerR package is designed for the easy retrieval and analysis of data pertaining to Covid trends in Canada, including information about cases, vaccinations and testing. The package serves as a wrapper for the opencovid.ca [API](Ihttps://opencovid.ca/api/), and provides additional helper functions for visualising the data, either as a time series or in the form of a map. 
+
+* #### `get_covid_data()`
+    Retrieve cleaned and formatted data of specified type and within (optionally) provided time ranges and locations
+
+* #### `plot_time_series()`
+    Function for plotting time series trends in Covid data, including options for trendlines and smoothing
+
+* #### `calculate_stat_summary()`
+    Function for returning key statistical information about Covid data, such as long run trends and comparisons between provinces<br>
+
+* #### `plot_geographical()`
+    Function for plotting choropleth maps with Covid data 
+
+## Usage and Examples
+`CovidTrackerR` can be used to acquire covid data, generate choropleth maps and time series plots, and compute summary statistics as follows:
+
+```{r, warning=FALSE}
+library(CovidTrackerR)
+covid_data <- get_covid_data('active', 'BC')
+head(covid_data)
+```
+
+```{r,warning=FALSE}
+covid_df <- get_covid_data()
+plot_geographical(covid_df, cases)
+```
+
+```{r,warning=FALSE}
+plot_timeseries(covid_df,cases)
+```
+
+```{r,warning=FALSE}
+calculate_stat_summary(covid_df,'cases')
+```
+
+## Similar Packages   
+There are several R packges which have some overlapping functionality as our package, but none which perform all the data acquisition, analysis and graphing tasks which CovidTracker encompasses. The packages designed for covid data retrieval also do not use the same data source as CovidTracker and do not provide the same level of granularity. Some examples of related R packages useful for Covid data retrieval and data visualizations include:
+
+- [COVID19](https://cran.r-project.org/web/packages/COVID19/index.html) - For Covid data retrieval 
+- [covdata](https://github.com/kjhealy/covdata/) - For Covid data retrieval
+- [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) - For data visualizations
+- [tmap](https://cran.r-project.org/web/packages/tmap/index.html) - For choropleth data visualizations
+
 
 ## Installation
 
-You can install the released version of CovidTrackerR from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("CovidTrackerR")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
+You can install the development version of CovidTrackerR from [GitHub](https://github.com/) with:
+ 
 ``` r
 # install.packages("devtools")
 devtools::install_github("UBC-MDS/Group28-CovidTracker-R")
 ```
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(CovidTrackerR)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
