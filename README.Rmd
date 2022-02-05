@@ -53,13 +53,16 @@ A vignette with full usage demonstration and function documentation can be found
 ## Usage and Examples
 `CovidTrackerR` can be used to acquire covid data, generate choropleth maps and time series plots, and compute summary statistics as follows:
 
-```{r, warning=FALSE}
+```{r, warning=FALSE,results = FALSE, results = 'hide' ,message=FALSE }
 library(CovidTrackerR)
+```
+
+```{r,warning=FALSE}
 covid_data <- get_covid_data('active', 'BC')
 head(covid_data)
 ```
 
-```{r,warning=FALSE}
+```{r,warning=FALSE,results = FALSE, results = 'hide' ,message=FALSE }
 covid_df <- get_covid_data()
 plot_geographical(covid_df, cases)
 ```

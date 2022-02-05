@@ -62,15 +62,9 @@ maps and time series plots, and compute summary statistics as follows:
 
 ``` r
 library(CovidTrackerR)
-#> Loading required package: tidyverse
-#> -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
-#> v ggplot2 3.3.5     v purrr   0.3.4
-#> v tibble  3.1.4     v dplyr   1.0.7
-#> v tidyr   1.1.3     v stringr 1.4.0
-#> v readr   2.0.2     v forcats 0.5.1
-#> -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
+```
+
+``` r
 covid_data <- get_covid_data('active', 'BC')
 head(covid_data)
 #>   active_cases active_cases_change cumulative_cases cumulative_deaths
@@ -92,50 +86,47 @@ head(covid_data)
 ``` r
 covid_df <- get_covid_data()
 plot_geographical(covid_df, cases)
-#> Registered S3 method overwritten by 'geojsonsf':
-#>   method        from   
-#>   print.geojson geojson
-```
-
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
-
-``` r
-plot_timeseries(covid_df,cases)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
+plot_timeseries(covid_df,cases)
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+``` r
 calculate_stat_summary(covid_df,'cases')
 #>         province start_date   end_date count      sd min   max mean quantile_25
-#> 1        Alberta 2020-01-25 2022-02-02   740 1367.17   0 17577  674       18.00
-#> 2             BC 2020-01-25 2022-02-02   740  819.15   0  9332  442        0.00
-#> 3       Manitoba 2020-01-25 2022-02-02   740  440.00   0  7083  164        1.00
-#> 4  New Brunswick 2020-01-25 2022-02-02   740  137.79  -2  2548   39        0.00
-#> 5             NL 2020-01-25 2022-02-02   740  131.60   0  1873   24        0.00
-#> 6    Nova Scotia 2020-01-25 2022-02-02   740  158.23  -1  1184   52        0.00
-#> 7        Nunavut 2020-01-25 2022-02-02   740   10.59   0   140    2        0.00
-#> 8            NWT 2020-01-25 2022-02-02   740   33.97  -4   314    8        0.00
-#> 9        Ontario 2020-01-25 2022-02-02   740 2907.45   0 35287 1423      204.25
-#> 10           PEI 2020-01-25 2022-02-02   740   49.75   0   407   11        0.00
-#> 11        Quebec 2020-01-25 2022-02-02   740 2328.19 -90 17122 1173      158.00
-#> 12   Repatriated 2020-01-25 2022-02-02   740    0.20   0     4    0        0.00
-#> 13  Saskatchewan 2020-01-25 2022-02-02   740  253.45   0  1979  162        8.75
-#> 14         Yukon 2020-01-25 2022-02-02   740   16.18   0   197    4        0.00
+#> 1        Alberta 2020-01-25 2022-02-04   742 1367.72   0 17577  678        18.0
+#> 2             BC 2020-01-25 2022-02-04   742  819.90   0  9332  445         0.0
+#> 3       Manitoba 2020-01-25 2022-02-04   742  439.78   0  7083  165         1.0
+#> 4  New Brunswick 2020-01-25 2022-02-04   742  138.91  -2  2548   40         0.0
+#> 5             NL 2020-01-25 2022-02-04   742  131.86   0  1873   24         0.0
+#> 6    Nova Scotia 2020-01-25 2022-02-04   742  159.77  -1  1184   53         0.0
+#> 7        Nunavut 2020-01-25 2022-02-04   742   10.98   0   140    2         0.0
+#> 8            NWT 2020-01-25 2022-02-04   742   34.90  -4   314    8         0.0
+#> 9        Ontario 2020-01-25 2022-02-04   742 2906.25   0 35287 1430       205.0
+#> 10           PEI 2020-01-25 2022-02-04   742   50.57   0   407   11         0.0
+#> 11        Quebec 2020-01-25 2022-02-04   742 2328.17 -90 17122 1179       158.5
+#> 12   Repatriated 2020-01-25 2022-02-04   742    0.20   0     4    0         0.0
+#> 13  Saskatchewan 2020-01-25 2022-02-04   742  255.35   0  1979  163         9.0
+#> 14         Yukon 2020-01-25 2022-02-04   742   16.17   0   197    4         0.0
 #>    quantile_50 quantile_75 current_value
-#> 1        209.0      786.00          3024
-#> 2         75.0      584.00          1774
-#> 3         53.0      173.00           524
-#> 4          3.0       16.00           381
-#> 5          0.0        3.00           248
-#> 6          2.0       17.00           395
-#> 7          0.0        0.00             0
-#> 8          0.0        0.00           148
-#> 9        550.5     1564.50          4307
-#> 10         0.0        1.00           238
-#> 11       654.0     1094.75          3816
+#> 1        212.0      787.50          2086
+#> 2         75.5      586.25          1495
+#> 3         53.5      174.50           620
+#> 4          3.0       16.00           401
+#> 5          0.0        3.00           258
+#> 6          2.0       17.00           594
+#> 7          0.0        0.00            44
+#> 8          0.0        0.00           187
+#> 9        551.0     1566.75          3959
+#> 10         0.0        1.00           199
+#> 11       655.5     1097.75          3400
 #> 12         0.0        0.00             0
-#> 13        73.0      221.25           622
+#> 13        73.0      222.00           771
 #> 14         0.0        1.00            18
 ```
 
